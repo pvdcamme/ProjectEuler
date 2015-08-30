@@ -13,26 +13,28 @@ public class Problem47 extends Problem {
     }
 
     private Vector<Integer> primeFactors(int n, Vector<Integer> primes) {
-        Vector<Integer> result = new Vector<>();
+        Vector<Integer> factors = new Vector<>();
+        int unresolved = n;
 
         for(int p: primes) {
             int factor = 1;
-            while(n % (p * factor) == 0)
-            {
+            while(unresolved % (p * factor) == 0) {
                 factor *= p;
             }
             if(factor != 1)
-                result.add(factor);
-            n = n / factor;
-            if(n == 1)
-                return result;
+                factors.add(factor);
+            unresolved = unresolved / factor;
+
+            if(unresolved == 1 || (p * p) > n) {
+                break;
+            }
         }
-        return result;
+        return factors;
     }
 
     @Override
     public void solve() {
-        long maxPrime = 1000000;
+        long maxPrime = 10000000;
         int size = 4;
         Vector<Integer> primes = new Vector<>();
         PrimeSerie primeSerie = new PrimeSerie();
@@ -64,12 +66,7 @@ public class Problem47 extends Problem {
 
             }
 
-
-
         }
 
-
-
-        System.out.format("%s: \n",this);
     }
 }
