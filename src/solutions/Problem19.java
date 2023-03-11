@@ -1,11 +1,7 @@
 package solutions;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Vector;
 
 public class Problem19 extends Problem {
 

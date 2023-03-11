@@ -1,11 +1,6 @@
 package solutions;
 
 import java.math.BigInteger;
-import java.util.Collections;
-import java.util.Set;
-import java.util.Stack;
-import java.util.TreeSet;
-import java.util.Vector;
 
 public class Problem48 extends Problem {
 

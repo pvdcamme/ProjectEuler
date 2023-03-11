@@ -2,8 +2,6 @@ package solutions;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collections;
-import java.util.Vector;
 
 public class Problem26 extends Problem {
 

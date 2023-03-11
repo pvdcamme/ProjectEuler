@@ -1,8 +1,5 @@
 package solutions;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.Format;
 import java.util.Vector;
 
 public class Problem21 extends Problem {

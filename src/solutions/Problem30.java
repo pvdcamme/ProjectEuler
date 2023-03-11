@@ -1,9 +1,5 @@
 package solutions;
 
-import java.math.BigInteger;
-import java.util.Set;
-import java.util.TreeSet;
-
 public class Problem30 extends Problem {
 
 	public Problem30() {

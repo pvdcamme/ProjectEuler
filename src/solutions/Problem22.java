@@ -1,11 +1,7 @@
 package solutions;
 
-import java.awt.List;
-import java.io.BufferedReader;
 import java.io.FileReader;
-import java.security.AlgorithmConstraints;
 import java.util.Arrays;
-import java.util.Vector;
 
 public class Problem22 extends Problem {
 

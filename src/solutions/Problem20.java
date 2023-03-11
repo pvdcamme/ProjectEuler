@@ -1,8 +1,6 @@
 package solutions;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.Format;
 
 public class Problem20 extends Problem {
 
