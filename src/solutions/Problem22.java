@@ -1,7 +1,10 @@
 package solutions;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Problem22 extends Problem {
 
@@ -29,7 +32,7 @@ public class Problem22 extends Problem {
 			for (int ctr = 0; ctr < names.length; ++ctr) {
 				int wordSum = 0;
 				String current = names[ctr];
-				
+
 				for (int letterCtr = 0; letterCtr < current.length(); ++letterCtr) {
 					wordSum += (current.charAt(letterCtr) - 'A') + 1;
 				}
@@ -39,9 +42,8 @@ public class Problem22 extends Problem {
 			}
 			System.out.format("%s : summed up to %d\n", this, sum);
 
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e) {
+			Logger.getGlobal().log(Level.SEVERE, "Can work with resource", e);
 		}
 	}
 }
