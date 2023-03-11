@@ -9,11 +9,24 @@ public class PrimeUtils {
 		public final long prime;
 		public final long times;
 
-		public PrimeFactor(long prime, long times) {
+		PrimeFactor(long prime, long times) {
 			this.prime = prime;
 			this.times = times;
 		}
 
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof PrimeFactor) {
+				PrimeFactor oth = (PrimeFactor) obj;
+				return oth.prime == prime && oth.times == times;
+			}
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return (int) (prime ^ times);
+		}
 	}
 
 	public static List<PrimeFactor> factorize(long val) {
