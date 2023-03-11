@@ -1,74 +1,52 @@
 package solutions;
 
-import java.util.Vector;
 import java.util.Queue;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
+
+import solutions.PrimeUtils.PrimeFactor;
+
 import java.util.HashSet;
 
+/**
+ * Find the first four consecutive integers to have four distinct prime factors
+ * each. What is the first of these numbers?
+ *
+ */
 public class Problem47 extends Problem {
 
-    public Problem47() {
-        super(47);
-    }
+	public Problem47() {
+		super(47);
+	}
 
-    private List<Integer> primeFactors(int n, List<Integer> primes) {
-        List<Integer> factors = new ArrayList<>();
-        int unresolved = n;
+	private boolean areDistinct(List<PrimeFactor> factors) {
+		Set<Long> seen = new HashSet<>();
+		for (PrimeFactor p : factors) {
+			seen.add(p.prime);
+		}
+		return factors.size() == seen.size();
 
-        for(int p: primes) {
-            int factor = 1;
-            while(unresolved % (p * factor) == 0) {
-                factor *= p;
-            }
-            if(factor != 1)
-                factors.add(factor);
-            unresolved = unresolved / factor;
+	}
 
-            if(unresolved == 1 || (p * p) > n) {
-                break;
-            }
-        }
-        return factors;
-    }
+	@Override
+	public void solve() {
+		final long minCount = 4;
+		long maxPrime = 10000000;
+		for (int ctr = 10; ctr < maxPrime; ++ctr) {
 
-    @Override
-    public void solve() {
-        long maxPrime = 10000000;
-        int size = 4;
-        List<Integer> primes = new ArrayList<>();
-        PrimeSerie primeSerie = new PrimeSerie();
-        while(primeSerie.next() < maxPrime) {
-            primes.add((int)primeSerie.current());
-        }
-        Queue<List<Integer> > factors = new LinkedList<>();
+			boolean found = true;
+			for (int extra = 0; found && extra < minCount; ++extra) {
+				List<PrimeFactor> factors = PrimeUtils.factorize(ctr + extra);
+				found = found && (factors.size() == minCount && areDistinct(factors));
+			}
 
-        for(int ctr = 10; ctr < maxPrime; ++ctr)
-        {
-            factors.offer(primeFactors(ctr, primes));
-            if(factors.size() > size)
-                factors.poll();
-            Set<Integer> factorSet = new HashSet<Integer>();
-            int count = 0;
-            for(List<Integer> fac: factors) {
-                if (fac.size() != size) {
-                    count = 1000;
-                    break;
-                }
-                for(int f: fac) {
-                    count++;
-                    factorSet.add(f);
-                }
-            }
-            if(count == factorSet.size()) {
-                System.out.format("%s: Found %d consecutive elements starting from %d \n",this, size, (ctr - size) + 1);
-                break;
+			if (!found) {
+				continue;
+			}
 
-            }
-
-        }
-
-    }
+			System.out.format("%s: Found %d with %n", this, ctr);
+			return;
+		}
+	}
 }
