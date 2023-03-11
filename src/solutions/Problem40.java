@@ -1,11 +1,5 @@
 package solutions;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Stack;
-import java.util.Vector;
-
 public class Problem40 extends Problem {
 
 	public Problem40() {
@@ -31,8 +25,7 @@ public class Problem40 extends Problem {
 
 		}
 
-		System.out.format("%s: counted to %d and found the product %d \n", this,
-				pos / 10, res);
+		System.out.format("%s: counted to %d and found the product %d \n", this, pos / 10, res);
 
 	}
 }

@@ -1,13 +1,8 @@
 package solutions;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Stack;
 import java.util.Vector;
 
 public class Problem43 extends Problem {
-	private Vector<Long> primes = new Vector<>();
 
 	public Problem43() {
 		super(43);
@@ -75,8 +70,7 @@ public class Problem43 extends Problem {
 			totalSum += l;
 		}
 
-		System.out.format("%s: counted %d special cases, summing to  %d\n",
-				this, special.size(), totalSum);
+		System.out.format("%s: counted %d special cases, summing to  %d\n", this, special.size(), totalSum);
 
 	}
 }

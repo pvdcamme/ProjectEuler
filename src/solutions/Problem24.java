@@ -1,7 +1,6 @@
 package solutions;
 
 import java.util.Collections;
-import java.util.Stack;
 import java.util.Vector;
 
 public class Problem24 extends Problem {

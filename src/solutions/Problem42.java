@@ -1,12 +1,7 @@
 package solutions;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Stack;
 import java.util.Vector;
 
 public class Problem42 extends Problem {

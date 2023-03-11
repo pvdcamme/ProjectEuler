@@ -1,7 +1,6 @@
 package solutions;
 
 import java.util.HashMap;
-import java.util.Vector;
 
 import solutions.PrimeUtils.PrimeFactor;
 
@@ -33,7 +32,7 @@ public class Problem5 extends Problem {
 			}
 		}
 
-		System.out.println(this + ": smallest multiple= "+ result);
+		System.out.println(this + ": smallest multiple= " + result);
 	}
 
 }

@@ -1,13 +1,8 @@
 package solutions;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Stack;
 import java.util.Vector;
 
 public class Problem45 extends Problem {
-	private Vector<Long> primes = new Vector<>();
 
 	public Problem45() {
 		super(45);
