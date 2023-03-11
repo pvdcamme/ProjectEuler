@@ -10,13 +10,13 @@ public class Problem26 extends Problem {
 
 	int search(int divisor, int skip, int searchLength) {
 		BigInteger bigDivisor = BigInteger.valueOf(divisor);
-		for (int ctr = 1; ctr < searchLength; ++ctr) {
-			BigInteger small = BigInteger.TEN.modPow(BigInteger.valueOf(ctr + skip), bigDivisor);
-			BigInteger large = BigInteger.TEN.modPow(BigInteger.valueOf(ctr * 2 + skip), bigDivisor);
-			BigInteger gigantic = BigInteger.TEN.modPow(BigInteger.valueOf(ctr * 3 + skip), bigDivisor);
+		for (int lengthCtr = 1; lengthCtr < searchLength; ++lengthCtr) {
+			BigInteger small = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr + skip), bigDivisor);
+			BigInteger large = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr * 2 + skip), bigDivisor);
+			BigInteger gigantic = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr * 3 + skip), bigDivisor);
 
 			if (small.equals(large) && small.equals(gigantic)) {
-				return ctr;
+				return lengthCtr;
 			}
 		}
 		return -1;
