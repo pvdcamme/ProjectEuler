@@ -12,10 +12,9 @@ public class Problem18 extends Problem {
 
 	@Override
 	public void solve() {
-		FileReader f;
-		try {
-			f = new FileReader("src/resources/prob18.txt");
-			BufferedReader reader = new BufferedReader(f);
+		try (FileReader f = new FileReader("src/resources/prob18.txt");
+				BufferedReader reader = new BufferedReader(f);) {
+
 			String line = null;
 			Vector<Integer> bestPath = new Vector<>();
 			bestPath.add(Integer.parseInt(reader.readLine()));
@@ -28,12 +27,10 @@ public class Problem18 extends Problem {
 				for (int ctr = 0; ctr < currentLine.size(); ++ctr) {
 					int currentPath = Integer.MIN_VALUE;
 					if (ctr - 1 >= 0) {
-						currentPath = currentLine.get(ctr)
-								+ bestPath.get(ctr - 1);
+						currentPath = currentLine.get(ctr) + bestPath.get(ctr - 1);
 					}
 					if (ctr < bestPath.size()) {
-						currentPath = Math.max(currentPath,
-								currentLine.get(ctr) + bestPath.get(ctr));
+						currentPath = Math.max(currentPath, currentLine.get(ctr) + bestPath.get(ctr));
 					}
 					currentLine.set(ctr, currentPath);
 				}
@@ -41,8 +38,7 @@ public class Problem18 extends Problem {
 
 			}
 			int finalbestPath = Integer.MIN_VALUE;
-			for(int path: bestPath)
-			{
+			for (int path : bestPath) {
 				finalbestPath = Math.max(finalbestPath, path);
 			}
 			System.out.println(this + ":most expensive path costs " + finalbestPath);
