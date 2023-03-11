@@ -54,7 +54,7 @@ public class Problem26 extends Problem {
 			int length = -1;
 
 			ReciprocalCache cache = new ReciprocalCache(ctr);
-			while (-1 == (length = search(cache, ctr, 2 * attempt, 2 * attempt)))
+			while (-1 == (length = search(cache, ctr, attempt, 2 * attempt)))
 				attempt++;
 
 			if (length > cycleLength) {
