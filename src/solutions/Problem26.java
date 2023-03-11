@@ -4,12 +4,17 @@ import java.math.BigInteger;
 import java.util.WeakHashMap;
 import java.util.function.Function;
 
+/**
+ * Find the value of d < 1000 for which 1/d contains the longest recurring cycle
+ * in its decimal fraction part.
+ *
+ */
 public class Problem26 extends Problem {
-	private static final class Cache {
+	private static final class ReciprocalCache {
 		final WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
 		private Function<Integer, BigInteger> divisorFun;
 
-		Cache(int divisor) {
+		ReciprocalCache(int divisor) {
 			BigInteger bigDivisor = BigInteger.valueOf(divisor);
 			divisorFun = (Integer v) -> {
 				return BigInteger.TEN.modPow(BigInteger.valueOf(v), bigDivisor);
@@ -25,7 +30,7 @@ public class Problem26 extends Problem {
 		super(26);
 	}
 
-	int search(Cache seen, int divisor, int skip, int searchLength) {
+	int search(ReciprocalCache seen, int divisor, int skip, int searchLength) {
 		for (int lengthCtr = 1; lengthCtr < searchLength; ++lengthCtr) {
 			BigInteger small = seen.get(lengthCtr + skip);
 			BigInteger large = seen.get(lengthCtr * 2 + skip);
@@ -48,7 +53,7 @@ public class Problem26 extends Problem {
 			int attempt = 1 + (largestCycle / 10);
 			int length = -1;
 
-			Cache cache = new Cache(ctr);
+			ReciprocalCache cache = new ReciprocalCache(ctr);
 			while (-1 == (length = search(cache, ctr, 2 * attempt, 2 * attempt)))
 				attempt++;
 
