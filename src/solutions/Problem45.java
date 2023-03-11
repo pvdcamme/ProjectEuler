@@ -1,7 +1,5 @@
 package solutions;
 
-import java.util.Vector;
-
 public class Problem45 extends Problem {
 
 	public Problem45() {
