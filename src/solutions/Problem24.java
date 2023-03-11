@@ -1,7 +1,8 @@
 package solutions;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
+import java.util.List;
 
 public class Problem24 extends Problem {
 
@@ -9,7 +10,7 @@ public class Problem24 extends Problem {
 		super(24);
 	}
 
-	void permute(int depth, int[] picking, Vector<Long> store) {
+	void permute(int depth, int[] picking, List<Long> store) {
 		if (depth == (picking.length - 1)) {
 			store.add(toLong(picking));
 		} else {
@@ -39,11 +40,10 @@ public class Problem24 extends Problem {
 	public void solve() {
 		int[] digits = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		int nth = 1000000;
-		Vector<Long> permutations = new Vector<Long>(4000000);
+		List<Long> permutations = new ArrayList<>(4000000);
 		permute(0, digits, permutations);
 		Collections.sort(permutations);
-		System.out.format("%s: : %d th permutions is %d\n", this, nth,
-				permutations.get(nth - 1));
+		System.out.format("%s: : %d th permutions is %d\n", this, nth, permutations.get(nth - 1));
 
 	}
 }
