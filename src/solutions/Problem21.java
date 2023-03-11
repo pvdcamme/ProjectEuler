@@ -1,5 +1,7 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Problem21 extends Problem {
@@ -9,7 +11,7 @@ public class Problem21 extends Problem {
 	}
 
 	private class Number {
-		Vector<Long> mDivisors;
+		List<Long> mDivisors = new ArrayList<>();
 
 		public void addDivisor(long prime) {
 			mDivisors.add(prime);
