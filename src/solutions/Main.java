@@ -11,7 +11,7 @@ public class Main {
 				new Problem25(), new Problem26(), new Problem27(), new Problem28(), new Problem29(), new Problem30(),
 				new Problem31(), new Problem32(), new Problem33(), new Problem34(), new Problem35(), new Problem36(),
 				new Problem37(), new Problem38(), new Problem39(), new Problem40(), new Problem41(), new Problem42(),
-				new Problem43(), new Problem44(), new Problem45(), new Problem46(), new Problem47() };
+				new Problem43(), new Problem44(), new Problem45(), new Problem46(), new Problem47(), new Problem48() };
 		long now = System.currentTimeMillis();
 		for (Problem prob : solved)
 			prob.solve();
