@@ -19,10 +19,13 @@ public class Problem26 extends Problem {
 		for (int lengthCtr = 1; lengthCtr < searchLength; ++lengthCtr) {
 			BigInteger small = seen.computeIfAbsent(lengthCtr + skip, divisorFun);
 			BigInteger large = seen.computeIfAbsent(lengthCtr * 2 + skip, divisorFun);
+			if(!small.equals(large)) {
+				continue;
+			}
 			BigInteger gigantic = seen.computeIfAbsent(lengthCtr * 3 + skip, divisorFun);
 
-			if (small.equals(large) && small.equals(gigantic)) {
-				return lengthCtr;				
+			if (small.equals(gigantic)) {
+				return lengthCtr;
 			}
 		}
 		int NOT_FOUND = -1;
