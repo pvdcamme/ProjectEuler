@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeUtils {
+	private static PrimeSerie serie = new PrimeSerie();
 
 	public static class PrimeFactor {
 		public final long prime;
@@ -27,15 +28,20 @@ public class PrimeUtils {
 		public int hashCode() {
 			return (int) (prime ^ times);
 		}
+
+		@Override
+		public String toString() {
+			return String.format("%d ** %d", prime, times);
+		}
 	}
 
 	public static List<PrimeFactor> factorize(long val) {
-		return factorize(val, new PrimeSerie());
+		serie.reset();
+		return factorize(val, serie);
 	}
 
 	public static List<PrimeFactor> factorize(long val, PrimeSerie primes) {
 		List<PrimeFactor> result = new ArrayList<PrimeUtils.PrimeFactor>();
-
 		do {
 			long testPrime = primes.next();
 			int ctr = 0;
