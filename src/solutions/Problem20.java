@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 
 public class Problem20 extends Problem {
 
-	public Problem20() {
-		super(20);
-	}
+    public Problem20() {
+        super(20);
+    }
 
-	@Override
-	public void solve() {
+    @Override
+    public void solve() {
 
-		int facEnd=100;
-		BigDecimal fac = BigDecimal.ONE;
-		for (int ctr = 1; ctr <= facEnd; ++ctr) {
-			fac = fac.multiply(new BigDecimal(ctr));
-		}
-		long sumDigits = 0;
-		String strDecimals = fac.toPlainString();
-		for (int ctr = 0; ctr < strDecimals.length(); ++ctr) {
-			sumDigits += strDecimals.charAt(ctr) - '0';
-		}
-		System.out.format("%s: sum of digits in fac(%d): %d\n",this,facEnd, sumDigits);
+        int facEnd = 100;
+        BigDecimal fac = BigDecimal.ONE;
+        for (int ctr = 1; ctr <= facEnd; ++ctr) {
+            fac = fac.multiply(new BigDecimal(ctr));
+        }
+        long sumDigits = 0;
+        String strDecimals = fac.toPlainString();
+        for (int ctr = 0; ctr < strDecimals.length(); ++ctr) {
+            sumDigits += strDecimals.charAt(ctr) - '0';
+        }
+        System.out.format("%s: sum of digits in fac(%d): %d\n", this, facEnd, sumDigits);
 
-	}
+    }
 }

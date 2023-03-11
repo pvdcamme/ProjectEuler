@@ -2,6 +2,10 @@ package solutions;
 
 import java.math.BigInteger;
 
+/**
+ * Find the last ten digits of the series, 11 + 22 + 33 + ... + 10001000.
+ *
+ */
 public class Problem48 extends Problem {
 
     public Problem48() {
@@ -13,11 +17,12 @@ public class Problem48 extends Problem {
         BigInteger result = BigInteger.ZERO;
         int length = 10;
         BigInteger modVal = BigInteger.TEN.pow(length + 2);
-        for(int ctr = 1; ctr < 1000; ctr++) {
+        for (int ctr = 1; ctr < 1000; ctr++) {
             BigInteger a = BigInteger.valueOf(ctr);
             a = a.modPow(a, modVal);
             result = result.add(a);
-        };
+        }
+
         String g = result.toString();
         g = g.substring(g.length() - length);
 
