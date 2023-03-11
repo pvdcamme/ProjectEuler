@@ -1,10 +1,11 @@
 package solutions;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrimeSerie {
 
-	private Vector<Long> mFoundPrimes;
+	private List<Long> mFoundPrimes;
 
 	private long currentIndex;
 	private long lastSieve;
@@ -12,8 +13,7 @@ public class PrimeSerie {
 	private final int sieveSize = 10000000;
 
 	public PrimeSerie() {
-		mFoundPrimes = new Vector<>();
-
+		mFoundPrimes = new ArrayList<>();
 		lastSieve = 2;
 		mFoundPrimes.add(2L);
 		currentIndex = -1;
@@ -31,7 +31,7 @@ public class PrimeSerie {
 			long startCtr = (prime * prime) * (startSieve / (prime * prime));
 			while (startCtr < startSieve)
 				startCtr += prime;
-			
+
 			for (long ctr = startCtr; ctr < endSieve; ctr += prime) {
 				naturals[(int) (ctr - startSieve)] = false;
 			}
@@ -51,7 +51,7 @@ public class PrimeSerie {
 	}
 
 	public long current() {
-		return mFoundPrimes.elementAt((int) currentIndex);
+		return mFoundPrimes.get((int) currentIndex);
 	}
 
 	public void reset() {
