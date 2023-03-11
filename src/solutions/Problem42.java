@@ -2,16 +2,12 @@ package solutions;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Vector;
 
 public class Problem42 extends Problem {
-	private Vector<Long> primes = new Vector<>();
 
 	public Problem42() {
 		super(42);
 	}
-
-
 
 	int triangle(int n) {
 		return (n * (n + 1)) / 2;
@@ -56,8 +52,7 @@ public class Problem42 extends Problem {
 			System.err.println(this + ": could not open/read words file");
 		}
 
-		System.out.format("%s: counted %d triangle words\n", this,
-				triangleWordCount);
+		System.out.format("%s: counted %d triangle words\n", this, triangleWordCount);
 
 	}
 }

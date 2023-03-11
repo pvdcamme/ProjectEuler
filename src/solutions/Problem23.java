@@ -9,11 +9,9 @@ public class Problem23 extends Problem {
 	}
 
 	private class Number {
-		long mValue;
 		Vector<Long> mDivisors;
 
-		public Number(long value) {
-			mValue = value;
+		public Number() {
 			mDivisors = new Vector<>();
 		}
 
@@ -26,11 +24,7 @@ public class Problem23 extends Problem {
 			for (long div : mDivisors)
 				sum += div;
 			return sum;
-		}
-
-		public long value() {
-			return mValue;
-		}
+		}		
 	}
 
 	@Override
@@ -38,7 +32,7 @@ public class Problem23 extends Problem {
 		int maxVal = 24000;
 		Vector<Integer> baseElements = new Vector<Integer>(maxVal);
 		for (int ctr = 1; ctr < maxVal; ++ctr) {
-			Number now = new Number(ctr);
+			Number now = new Number();
 			now.addDivisor(1);
 			for (int divCtr = 2; (divCtr * divCtr) <= ctr; ++divCtr) {
 				if (ctr % divCtr == 0) {
