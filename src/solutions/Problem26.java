@@ -10,8 +10,7 @@ public class Problem26 extends Problem {
 		super(26);
 	}
 
-	int search(int divisor, int skip, int searchLength) {
-		WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
+	int search(WeakHashMap<Integer, BigInteger> seen, int divisor, int skip, int searchLength) {		
 		BigInteger bigDivisor = BigInteger.valueOf(divisor);
 		Function<Integer, BigInteger> divisorFun = (Integer v) -> {
 			return BigInteger.TEN.modPow(BigInteger.valueOf(v), bigDivisor);
@@ -40,7 +39,8 @@ public class Problem26 extends Problem {
 
 			int attempt = 1 + (largestCycle / 10);
 			int length = -1;
-			while (-1 == (length = search(ctr, 2 * (attempt + 5), 2 * (attempt + 5))))
+			WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
+			while (-1 == (length = search(seen, ctr, 2 * attempt, 2 * attempt )))
 				attempt++;
 
 			if (length > cycleLength) {
