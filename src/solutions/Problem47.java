@@ -3,7 +3,9 @@ package solutions;
 import java.util.Vector;
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Problem47 extends Problem {
@@ -12,8 +14,8 @@ public class Problem47 extends Problem {
         super(47);
     }
 
-    private Vector<Integer> primeFactors(int n, Vector<Integer> primes) {
-        Vector<Integer> factors = new Vector<>();
+    private List<Integer> primeFactors(int n, List<Integer> primes) {
+        List<Integer> factors = new ArrayList<>();
         int unresolved = n;
 
         for(int p: primes) {
@@ -36,12 +38,12 @@ public class Problem47 extends Problem {
     public void solve() {
         long maxPrime = 10000000;
         int size = 4;
-        Vector<Integer> primes = new Vector<>();
+        List<Integer> primes = new ArrayList<>();
         PrimeSerie primeSerie = new PrimeSerie();
         while(primeSerie.next() < maxPrime) {
             primes.add((int)primeSerie.current());
         }
-        Queue<Vector<Integer> > factors = new LinkedList<Vector<Integer> >();
+        Queue<List<Integer> > factors = new LinkedList<>();
 
         for(int ctr = 10; ctr < maxPrime; ++ctr)
         {
@@ -50,7 +52,7 @@ public class Problem47 extends Problem {
                 factors.poll();
             Set<Integer> factorSet = new HashSet<Integer>();
             int count = 0;
-            for(Vector<Integer> fac: factors) {
+            for(List<Integer> fac: factors) {
                 if (fac.size() != size) {
                     count = 1000;
                     break;
