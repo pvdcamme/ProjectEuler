@@ -1,16 +1,17 @@
 package solutions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Vector;
+import java.util.List;
 
 public class Problem41 extends Problem {
-	private Vector<Long> primes = new Vector<>();
+	private List<Long> primes = new ArrayList<>();
 
 	public Problem41() {
 		super(41);
 	}
 
-	void permute(int depth, int[] picking, Vector<Long> store) {
+	void permute(int depth, int[] picking, List<Long> store) {
 		if (depth == (picking.length - 1)) {
 			long value = toLong(picking);
 			if (isPrime(value))
@@ -56,8 +57,8 @@ public class Problem41 extends Problem {
 			digits[ctr] = ctr + 1;
 
 		PrimeSerie series = new PrimeSerie();
-		
-		Vector<Long> palinPrime = new Vector<>();
+
+		List<Long> palinPrime = new ArrayList<>();
 		long largestValue = 987654321L;
 
 		while (true) {
@@ -67,20 +68,19 @@ public class Problem41 extends Problem {
 				break;
 		}
 
-		for(int ctr = digits.length; palinPrime.isEmpty() && ctr > 0; --ctr){
-			int[] selectedDigits = Arrays.copyOfRange(digits, 0, ctr); 
+		for (int ctr = digits.length; palinPrime.isEmpty() && ctr > 0; --ctr) {
+			int[] selectedDigits = Arrays.copyOfRange(digits, 0, ctr);
 			permute(0, selectedDigits, palinPrime);
-			
+
 		}
-		
+
 		long largestPrime = 0;
 		for (long p : palinPrime) {
 			if (p > largestPrime)
 				largestPrime = p;
 		}
 
-		System.out.format("%s: %d is the largest pan-digital prime\n", this,
-				largestPrime);
+		System.out.format("%s: %d is the largest pan-digital prime\n", this, largestPrime);
 
 	}
 }
