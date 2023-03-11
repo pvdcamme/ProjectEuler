@@ -1,12 +1,9 @@
 package solutions;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrimeUtils {
-
-	private PrimeUtils() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public static class PrimeFactor {
 		public final long prime;
@@ -19,12 +16,12 @@ public class PrimeUtils {
 
 	}
 
-	public static Vector<PrimeFactor> factorize(long val) {
+	public static List<PrimeFactor> factorize(long val) {
 		return factorize(val, new PrimeSerie());
 	}
 
-	public static Vector<PrimeFactor> factorize(long val, PrimeSerie primes) {
-		Vector<PrimeFactor> result = new Vector<PrimeUtils.PrimeFactor>();
+	public static List<PrimeFactor> factorize(long val, PrimeSerie primes) {
+		List<PrimeFactor> result = new ArrayList<PrimeUtils.PrimeFactor>();
 
 		do {
 			long testPrime = primes.next();
