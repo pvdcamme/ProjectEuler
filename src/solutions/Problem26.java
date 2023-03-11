@@ -1,6 +1,8 @@
 package solutions;
 
 import java.math.BigInteger;
+import java.util.WeakHashMap;
+import java.util.function.Function;
 
 public class Problem26 extends Problem {
 
@@ -9,17 +11,22 @@ public class Problem26 extends Problem {
 	}
 
 	int search(int divisor, int skip, int searchLength) {
+		WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
 		BigInteger bigDivisor = BigInteger.valueOf(divisor);
+		Function<Integer, BigInteger> divisorFun = (Integer v) -> {
+			return BigInteger.TEN.modPow(BigInteger.valueOf(v), bigDivisor);
+		};
 		for (int lengthCtr = 1; lengthCtr < searchLength; ++lengthCtr) {
-			BigInteger small = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr + skip), bigDivisor);
-			BigInteger large = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr * 2 + skip), bigDivisor);
-			BigInteger gigantic = BigInteger.TEN.modPow(BigInteger.valueOf(lengthCtr * 3 + skip), bigDivisor);
+			BigInteger small = seen.computeIfAbsent(lengthCtr + skip, divisorFun);
+			BigInteger large = seen.computeIfAbsent(lengthCtr * 2 + skip, divisorFun);
+			BigInteger gigantic = seen.computeIfAbsent(lengthCtr * 3 + skip, divisorFun);
 
 			if (small.equals(large) && small.equals(gigantic)) {
-				return lengthCtr;
+				return lengthCtr;				
 			}
 		}
-		return -1;
+		int NOT_FOUND = -1;
+		return NOT_FOUND;
 	}
 
 	@Override
@@ -28,7 +35,7 @@ public class Problem26 extends Problem {
 		int cycleLength = 0;
 		for (int ctr = 2; ctr < 1000; ++ctr) {
 
-			int attempt = 1;
+			int attempt = 1 + (largestCycle / 10);
 			int length = -1;
 			while (-1 == (length = search(ctr, 2 * (attempt + 5), 2 * (attempt + 5))))
 				attempt++;
