@@ -56,4 +56,17 @@ public class PrimeUtils {
         } while (val > 1);
         return result;
     }
+
+    public static List<Long> gatherPrimes(long minPrime, long maxPrime) {
+        List<Long> result = new ArrayList<>();
+        serie.reset();
+
+        while (serie.next() < maxPrime) {
+            long val = serie.current();
+            if (val > minPrime) {
+                result.add(serie.current());
+            }
+        }
+        return result;
+    }
 }
