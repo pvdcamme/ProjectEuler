@@ -80,7 +80,6 @@ public class Problem41 extends Problem {
                 largestPrime = p;
         }
 
-        System.out.format("%s: %d is the largest pan-digital prime\n", this, largestPrime);
-
+        printSolution("%d is the largest pan-digital prime", largestPrime);
     }
 }

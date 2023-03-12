@@ -1,6 +1,7 @@
 package solutions;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Problem46 extends Problem {
 
@@ -9,8 +10,8 @@ public class Problem46 extends Problem {
     }
 
     public int verify(int maxVal) {
-        Vector<Integer> primes = new Vector<Integer>();
-        Vector<Integer> squares = new Vector<Integer>();
+        List<Integer> primes = new ArrayList<Integer>();
+        List<Integer> squares = new ArrayList<Integer>();
         boolean[] found = new boolean[maxVal];
 
         PrimeSerie series = new PrimeSerie();
@@ -52,7 +53,7 @@ public class Problem46 extends Problem {
             verifyRange *= 10;
         }
 
-        System.out.format("%s: Smallest falsification is %d\n", this, smallestError);
+        printSolution("Smallest falsification is %d", smallestError);
 
     }
 }

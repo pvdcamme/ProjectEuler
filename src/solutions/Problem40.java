@@ -25,7 +25,7 @@ public class Problem40 extends Problem {
 
         }
 
-        System.out.format("%s: counted to %d and found the product %d \n", this, pos / 10, res);
+        printSolution("counted to %d and found the product %d", pos / 10, res);
 
     }
 }

@@ -1,6 +1,7 @@
 package solutions;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Problem44 extends Problem {
 
@@ -16,7 +17,7 @@ public class Problem44 extends Problem {
     public void solve() {
         boolean[] isPentagonal = new boolean[100000000];
 
-        Vector<Integer> special = new Vector<>();
+        List<Integer> special = new ArrayList<>();
         for (int n = 0; pentagonal(n) < isPentagonal.length; n++) {
             int pent = pentagonal(n);
             isPentagonal[pent] = true;
@@ -41,7 +42,7 @@ public class Problem44 extends Problem {
             }
         }
 
-        System.out.format("%s: Smallest difference is %d\n", this, smallest);
+        printSolution("Smallest difference is %d", smallest);
 
     }
 }

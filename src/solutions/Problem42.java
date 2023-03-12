@@ -52,7 +52,6 @@ public class Problem42 extends Problem {
             System.err.println(this + ": could not open/read words file");
         }
 
-        System.out.format("%s: counted %d triangle words\n", this, triangleWordCount);
-
+        printSolution("counted %d triangle words", triangleWordCount);
     }
 }

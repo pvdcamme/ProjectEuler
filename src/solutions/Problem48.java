@@ -23,10 +23,10 @@ public class Problem48 extends Problem {
             result = result.add(a);
         }
 
-        String g = result.toString();
-        g = g.substring(g.length() - length);
+        String textValue = result.toString();
+        String lastPart = textValue.substring(textValue.length() - length);
 
-        System.out.format("%s: counted to %s \n", this, g);
+        printSolution("counted to %s", lastPart);
 
     }
 }

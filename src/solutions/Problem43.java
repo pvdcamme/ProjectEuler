@@ -70,7 +70,7 @@ public class Problem43 extends Problem {
             totalSum += l;
         }
 
-        System.out.format("%s: counted %d special cases, summing to  %d\n", this, special.size(), totalSum);
+        printSolution("counted %d special cases, summing to  %d", special.size(), totalSum);
 
     }
 }

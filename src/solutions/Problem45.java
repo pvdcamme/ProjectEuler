@@ -44,7 +44,7 @@ public class Problem45 extends Problem {
             hex = hexagonal(n_hex);
         }
 
-        System.out.format("%s: Next smallest equal is %d\n", this, tri);
+        printSolution("Next smallest equal is %d", tri);
 
     }
 }

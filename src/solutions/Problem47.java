@@ -45,7 +45,7 @@ public class Problem47 extends Problem {
                 continue;
             }
 
-            System.out.format("%s: Found %d %n", this, ctr);
+            printSolution("Found %d", ctr);
             return;
         }
     }
