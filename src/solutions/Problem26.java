@@ -62,7 +62,7 @@ public class Problem26 extends Problem {
                 cycleLength = length;
             }
         }
-        System.out.format("%s: : 1/%d has a reciprocal of %d digits\n", this, largestCycle, cycleLength);
+        printSolution("1/%d has a reciprocal of %d digits", largestCycle, cycleLength);
 
     }
 }

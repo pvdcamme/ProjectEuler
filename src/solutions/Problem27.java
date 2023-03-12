@@ -43,8 +43,7 @@ public class Problem27 extends Problem {
                     bestB = b;
                 }
             }
-        System.out.format("%s: : a= %d and b= %d (product %d) has %d primes \n", this, bestA, bestB, bestA * bestB,
-                maxN);
+        printSolution("a= %d and b= %d (product %d) has %d primes", bestA, bestB, bestA * bestB, maxN);
 
     }
 }

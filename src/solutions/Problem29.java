@@ -20,8 +20,7 @@ public class Problem29 extends Problem {
                 BigInteger power = BigInteger.valueOf(a).pow(b);
                 distinctValues.add(power);
             }
-        System.out.format("%s: : a^b for 2 <= a,b<= %d results in %d distinct numbers \n", this, max,
-                distinctValues.size());
+        printSolution("a^b for 2 <= a,b<= %d results in %d distinct numbers", max, distinctValues.size());
 
     }
 }

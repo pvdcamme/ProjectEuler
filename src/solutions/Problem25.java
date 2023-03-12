@@ -20,7 +20,7 @@ public class Problem25 extends Problem {
             b = c;
             ctr++;
         }
-        System.out.format("%s: : first fib to contain %d decimals is %d \n", this, searchDecimals, ctr);
+        printSolution("first fib to contain %d decimals is %d", searchDecimals, ctr);
 
     }
 }

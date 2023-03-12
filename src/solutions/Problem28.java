@@ -47,7 +47,7 @@ public class Problem28 extends Problem {
             }
             ctr++;
         }
-        System.out.format("%s: : a %d by %d spiral sums to %d \n", this, maxSize, maxSize, sum);
+        printSolution("a %d by %d spiral sums to %d", maxSize, maxSize, sum);
 
     }
 }

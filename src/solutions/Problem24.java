@@ -43,7 +43,7 @@ public class Problem24 extends Problem {
         List<Long> permutations = new ArrayList<>(4000000);
         permute(0, digits, permutations);
         Collections.sort(permutations);
-        System.out.format("%s: : %d th permutions is %d\n", this, nth, permutations.get(nth - 1));
+        printSolution("%d th permutions is %d", nth, permutations.get(nth - 1));
 
     }
 }
