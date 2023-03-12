@@ -1,7 +1,6 @@
 package solutions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,21 +52,24 @@ public class Problem50 extends Problem {
         int lengthCtr = 5;
         long summedPrime = 953;
         boolean foundPrime = true;
-        while (lengthCtr < 1000) {
+        while (lengthCtr < primes.size()) {
             foundPrime = false;
             int nextLength = lengthCtr + 1;
-            long result = 0;
+            long slidingSum = 0;
             for (int ctr = 0; ctr < nextLength; ++ctr) {
-                result += primes.get(ctr);
+                slidingSum += primes.get(ctr);
+            }
+            if (slidingSum > maxPrime) {
+                break;
             }
 
             for (int ctr = nextLength; ctr < primes.size(); ++ctr) {
-                result -= (ctr - nextLength);
-                result += primes.get(ctr);
-                foundPrime = isPrime.contains(result);
+                slidingSum -= (ctr - nextLength);
+                slidingSum += primes.get(ctr);
+                foundPrime = isPrime.contains(slidingSum);
                 lengthCtr = nextLength;
                 if (foundPrime) {
-                    summedPrime = result;
+                    summedPrime = slidingSum;
                     break;
                 }
             }
