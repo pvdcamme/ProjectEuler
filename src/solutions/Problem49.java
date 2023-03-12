@@ -89,7 +89,7 @@ public class Problem49 extends Problem {
         for (List<Long> together : palinDromes.values()) {
             for (long triple : tripleIncrement(together)) {
                 if (triple != forbidden) {
-                    printSolution("%d", triple);
+                    printSolution("Found triplet %d", triple);
                 }
             }
 
