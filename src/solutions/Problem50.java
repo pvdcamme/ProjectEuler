@@ -56,11 +56,14 @@ public class Problem50 extends Problem {
         while (lenghtCtr < 1000) {
             foundPrime = false;
             int nextLenght = lenghtCtr + 1;
-            for (int ctr = 0; ctr < primes.size() - nextLenght; ++ctr) {
-                long result = 0;
-                for (int sumCtr = 0; sumCtr < nextLenght; ++sumCtr) {
-                    result += primes.get(ctr + sumCtr);
-                }
+            long result = 0;
+            for (int ctr = 0; ctr < nextLenght; ++ctr) {
+                result += primes.get(ctr);
+            }
+
+            for (int ctr = nextLenght; ctr < primes.size(); ++ctr) {
+                result -= (ctr - nextLenght);
+                result += primes.get(ctr);
                 foundPrime = isPrime.contains(result);
                 lenghtCtr = nextLenght;
                 if (foundPrime) {
@@ -70,6 +73,6 @@ public class Problem50 extends Problem {
                 }
             }
         }
-        printSolution("%d", summedPrime);
+        printSolution("Summed to %d", summedPrime);
     }
 }
