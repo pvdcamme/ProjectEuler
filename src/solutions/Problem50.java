@@ -50,25 +50,24 @@ public class Problem50 extends Problem {
         List<Long> primes = gatherPrimes(minPrime, maxPrime);
         Set<Long> isPrime = new HashSet<>(primes);
 
-        int lenghtCtr = 5;
+        int lengthCtr = 5;
         long summedPrime = 953;
         boolean foundPrime = true;
-        while (lenghtCtr < 1000) {
+        while (lengthCtr < 1000) {
             foundPrime = false;
-            int nextLenght = lenghtCtr + 1;
+            int nextLength = lengthCtr + 1;
             long result = 0;
-            for (int ctr = 0; ctr < nextLenght; ++ctr) {
+            for (int ctr = 0; ctr < nextLength; ++ctr) {
                 result += primes.get(ctr);
             }
 
-            for (int ctr = nextLenght; ctr < primes.size(); ++ctr) {
-                result -= (ctr - nextLenght);
+            for (int ctr = nextLength; ctr < primes.size(); ++ctr) {
+                result -= (ctr - nextLength);
                 result += primes.get(ctr);
                 foundPrime = isPrime.contains(result);
-                lenghtCtr = nextLenght;
+                lengthCtr = nextLength;
                 if (foundPrime) {
                     summedPrime = result;
-                    printSolution("length=  %d with %d", lenghtCtr, result);
                     break;
                 }
             }
