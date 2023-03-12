@@ -20,33 +20,40 @@ public class Problem47 extends Problem {
         super(47);
     }
 
-    private boolean areDistinct(List<PrimeFactor> factors) {
-        Set<Long> seen = new HashSet<>();
-        for (PrimeFactor p : factors) {
-            seen.add(p.prime);
-        }
-        return factors.size() == seen.size();
+    public int boundedSearch(int minCount, int maxval) {
+        int[] cnt = new int[maxval];
+        PrimeSerie p = new PrimeSerie();
+        while (p.next() < maxval) {
+            int currentPrime = (int) p.current();
+            long val = currentPrime;
 
+            while (val < maxval) {
+                cnt[(int) val] += 1;
+                val += currentPrime;
+            }
+        }
+
+        for (int ctr = 0; ctr < (maxval - minCount); ++ctr) {
+            boolean allGood = true;
+            for (int inner = 0; allGood && inner < minCount; ++inner) {
+                allGood = allGood && (cnt[ctr + inner] == minCount);
+            }
+            if (allGood) {
+                return ctr;
+            }
+        }
+        return -1;
     }
 
-    @Override
     public void solve() {
-        final long minCount = 4;
-        long maxPrime = 10000000;
-        Map<Integer, List<PrimeFactor>> cache = new HashMap<>();
-        for (int ctr = 10; ctr < maxPrime; ++ctr) {
-            boolean found = true;
-            for (int extra = 0; found && extra < minCount; ++extra) {
-                List<PrimeFactor> factors = cache.computeIfAbsent(ctr + extra, PrimeUtils::factorize);
-                found = found && (factors.size() == minCount && areDistinct(factors));
+        int size = 10;
+        while (true) {
+            int res = boundedSearch(4, size);
+            if (res > 0) {
+                printSolution("First of four is %d", res);
+                return;
             }
-
-            if (!found) {
-                continue;
-            }
-
-            printSolution("Found %d", ctr);
-            return;
+            size *= 10;
         }
     }
 }
