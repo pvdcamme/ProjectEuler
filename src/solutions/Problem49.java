@@ -47,36 +47,37 @@ public class Problem49 extends Problem {
             digits.add(d);
         }
         digits.sort(Long::compare);
-        long result = 0;
-        for (long d : digits) {
-            result = result * 10 + d;
+        long sortedVal = 0;
+        for (long sortedDigit : digits) {
+            sortedVal = sortedVal * 10 + sortedDigit;
         }
-        return result;
+        return sortedVal;
     }
 
-    public void searchIncrement(List<Long> bb) {
+    public List<Long> tripleIncrement(List<Long> bb) {
         Set<Long> g = new HashSet<>(bb);
-        for (long a : g) {
-            for (long b : g) {
-                if (a == 1487) {
+        ArrayList<Long> triples = new ArrayList<Long>();
+        for (long smallest : g) {
+            for (long middle : g) {
+                if (middle <= smallest) {
                     continue;
                 }
-                if (b <= a) {
-                    continue;
-                }
-                long diff = b - a;
-                long c = b + diff;
-                if (g.contains(c)) {
-                    printSolution("%d %d %d", a, b, c);
+                long diff = middle - smallest;
+                long largest = middle + diff;
+                if (g.contains(largest)) {
+                    String together = String.format("%d%d%d", smallest, middle, largest);
+                    triples.add(Long.decode(together));
                 }
             }
         }
+        return triples;
     }
 
     @Override
     public void solve() {
-        long minPrime = 999;
-        long maxPrime = 10_000;
+        final long minPrime = 999;
+        final long maxPrime = 10_000;
+        final long forbidden = 148748178147L;
         List<Long> primes = gatherPrimes(minPrime, maxPrime);
         HashMap<Long, ArrayList<Long>> palinDromes = new HashMap<>();
 
@@ -86,7 +87,12 @@ public class Problem49 extends Problem {
             sharedDigits.add(aPrime);
         }
         for (List<Long> together : palinDromes.values()) {
-            searchIncrement(together);
+            for (long triple : tripleIncrement(together)) {
+                if (triple != forbidden) {
+                    printSolution("%d", triple);
+                }
+            }
+
         }
     }
 }
