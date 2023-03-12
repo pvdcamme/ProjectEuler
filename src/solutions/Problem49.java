@@ -54,17 +54,17 @@ public class Problem49 extends Problem {
         return sortedVal;
     }
 
-    public List<Long> tripleIncrement(List<Long> bb) {
-        Set<Long> g = new HashSet<>(bb);
+    private List<Long> tripleIncrement(List<Long> palinedromes) {
+        Set<Long> valueSet = new HashSet<>(palinedromes);
         ArrayList<Long> triples = new ArrayList<Long>();
-        for (long smallest : g) {
-            for (long middle : g) {
+        for (long smallest : valueSet) {
+            for (long middle : valueSet) {
                 if (middle <= smallest) {
                     continue;
                 }
-                long diff = middle - smallest;
-                long largest = middle + diff;
-                if (g.contains(largest)) {
+                long increment = middle - smallest;
+                long largest = middle + increment;
+                if (valueSet.contains(largest)) {
                     String together = String.format("%d%d%d", smallest, middle, largest);
                     triples.add(Long.decode(together));
                 }
