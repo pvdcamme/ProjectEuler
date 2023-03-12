@@ -28,7 +28,7 @@ public class Problem4 extends Problem {
                 if (isPalinDrome(a * b))
                     largest = Math.max(largest, a * b);
             }
-        System.out.println(this + ":largest palindrome-product is " + largest);
+        printSolution("largest palindrome-product is %d", largest);
     }
 
 }

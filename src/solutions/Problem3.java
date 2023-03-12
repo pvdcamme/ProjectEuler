@@ -15,10 +15,8 @@ public class Problem3 extends Problem {
             prime = serie.next();
             if (start % prime == 0) {
                 start /= prime;
-                System.out.println("divisor: " + prime);
             }
         } while (start > 1);
-        System.out.println(this + "largest prime divisor: " + prime);
+        printSolution("largest prime divisor: %d", prime);
     }
-
 }

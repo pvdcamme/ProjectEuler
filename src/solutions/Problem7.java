@@ -14,6 +14,6 @@ public class Problem7 extends Problem {
             primes.next();
         }
 
-        System.out.println(this + ": " + nth + "th prime is: " + primes.current());
+        printSolution("%d th prime is: %d", nth, primes.current());
     }
 }

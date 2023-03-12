@@ -4,7 +4,6 @@ public class Problem31 extends Problem {
 
     public Problem31() {
         super(31);
-
     }
 
     int countOut(int value, int[] coinTypes, int amtTypes) {

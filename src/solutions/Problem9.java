@@ -13,12 +13,10 @@ public class Problem9 extends Problem {
             for (a = 1; a < b; ++a) {
                 c = 1000 - (a + b);
                 if (c > b && (a * a) + (b * b) == (c * c)) {
-                    System.out.println(this + ": Pythagorean triplet for a+b+c = 1000 (" + a + ", " + b + ", " + c
-                            + ") and abc =" + (a * b * c));
+                    printSolution("Pythagorean triplet for a+b+c = 1000 ( %d, %d, %d) = %d", a, b, c, a * b * c);
+
                     return;
                 }
-
             }
-
     }
 }

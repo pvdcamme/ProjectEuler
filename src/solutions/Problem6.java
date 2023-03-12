@@ -16,7 +16,7 @@ public class Problem6 extends Problem {
         }
 
         long difference = sum * sum - sumSquares;
-        System.out.println(this + ": difference between squares= " + difference);
+        printSolution("difference between squares= %d", difference);
     }
 
 }

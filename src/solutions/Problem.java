@@ -14,4 +14,8 @@ public abstract class Problem {
         return "problem " + mProblemNumer;
     }
 
+    protected void printSolution(String baseformat, Object ... args) {
+        String formatted = String.format(baseformat, args);
+        System.out.format("%s: %s%n", this, formatted);        
+    }
 }

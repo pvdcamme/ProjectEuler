@@ -42,6 +42,6 @@ public class Problem8 extends Problem {
             maxOverSpan = Math.max(maxOverSpan, current);
         }
 
-        System.out.println(this + ": largest value over span of " + span + ": " + maxOverSpan);
+        printSolution("largest value over span of %d: %d", span, maxOverSpan);
     }
 }

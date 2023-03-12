@@ -15,7 +15,6 @@ public class Problem2 extends Problem {
             if (next % 2 == 0)
                 sum += next;
         } while (serie.current() < 4 * 1000 * 1000);
-        System.out.println(this + ": sum=" + sum);
+        printSolution("sum= %d", sum);
     }
-
 }

@@ -14,7 +14,6 @@ public class Problem1 extends Problem {
             if (ctr % 3 == 0 || ctr % 5 == 0)
                 sum += ctr;
         }
-        System.out.println(this + ": sum= " + sum);
+        printSolution("sum= %d", sum);
     }
-
 }

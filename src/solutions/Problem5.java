@@ -32,7 +32,7 @@ public class Problem5 extends Problem {
             }
         }
 
-        System.out.println(this + ": smallest multiple= " + result);
+        printSolution("smallest multiple= %d", result);
     }
 
 }
