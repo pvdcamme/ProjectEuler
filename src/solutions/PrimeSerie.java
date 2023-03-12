@@ -1,9 +1,10 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class PrimeSerie {
+public class PrimeSerie implements Iterator<Long>{
 
     private List<Long> mFoundPrimes;
 
@@ -58,7 +59,7 @@ public class PrimeSerie {
         currentIndex = -1;
     }
 
-    public long next() {
+    public Long next() {
         if ((currentIndex + 1) < mFoundPrimes.size()) {
             currentIndex++;
             return current();
@@ -90,4 +91,8 @@ public class PrimeSerie {
         return current();
     }
 
+    @Override
+    public boolean hasNext() {
+        return true;
+    }
 }

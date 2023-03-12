@@ -1,6 +1,8 @@
 package solutions;
 
-public class FibSerie {
+import java.util.Iterator;
+
+public class FibSerie implements Iterator<Long> {
 
     private long a;
     private long b;
@@ -14,11 +16,15 @@ public class FibSerie {
         return a + b;
     }
 
-    public long next() {
+    public Long next() {
         long result = a + b;
         a = b;
         b = result;
         return result;
     }
 
+    @Override
+    public boolean hasNext() {
+        return true;
+    }
 }
