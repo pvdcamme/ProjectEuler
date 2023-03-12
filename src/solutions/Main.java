@@ -12,10 +12,22 @@ public class Main {
                 new Problem31(), new Problem32(), new Problem33(), new Problem34(), new Problem35(), new Problem36(),
                 new Problem37(), new Problem38(), new Problem39(), new Problem40(), new Problem41(), new Problem42(),
                 new Problem43(), new Problem44(), new Problem45(), new Problem46(), new Problem47(), new Problem48(),
-                new Problem49(), new Problem50() };
+                new Problem49(), new Problem50(), new Problem51() };
         long now = System.currentTimeMillis();
-        for (Problem prob : solved)
+
+        Problem slowest = solved[0];
+        long longestSolving = 0;
+        for (Problem prob : solved) {
+            long start = System.nanoTime();
             prob.solve();
+            long duration = System.nanoTime() - start;
+            if (duration > longestSolving) {
+                slowest = prob;
+                longestSolving = duration;
+            }
+        }
+        System.out.println();
         System.out.format("Solved %d problems in %f s %n", solved.length, (System.currentTimeMillis() - now) / 1e3);
+        System.out.format("Slowest problem %s with %f s %n", slowest, longestSolving / 1E9);
     }
 }
