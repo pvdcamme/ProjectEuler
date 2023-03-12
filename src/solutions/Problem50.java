@@ -49,26 +49,20 @@ public class Problem50 extends Problem {
         List<Long> primes = gatherPrimes(minPrime, maxPrime);
         Set<Long> isPrime = new HashSet<>(primes);
 
-        int lengthCtr = 5;
-        long summedPrime = 953;
-        boolean foundPrime = true;
-        while (lengthCtr < primes.size()) {
-            foundPrime = false;
-            int nextLength = lengthCtr + 1;
+        long summedPrime = 2;
+        for (int lengthCtr = 1; lengthCtr < primes.size(); ++lengthCtr) {
             long slidingSum = 0;
-            for (int ctr = 0; ctr < nextLength; ++ctr) {
+            for (int ctr = 0; ctr < lengthCtr; ++ctr) {
                 slidingSum += primes.get(ctr);
             }
             if (slidingSum > maxPrime) {
                 break;
             }
 
-            for (int ctr = nextLength; ctr < primes.size(); ++ctr) {
-                slidingSum -= (ctr - nextLength);
+            for (int ctr = lengthCtr; ctr < primes.size(); ++ctr) {
+                slidingSum -= (ctr - lengthCtr);
                 slidingSum += primes.get(ctr);
-                foundPrime = isPrime.contains(slidingSum);
-                lengthCtr = nextLength;
-                if (foundPrime) {
+                if (isPrime.contains(slidingSum)) {
                     summedPrime = slidingSum;
                     break;
                 }
