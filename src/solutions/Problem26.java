@@ -11,8 +11,8 @@ import java.util.function.Function;
  */
 public class Problem26 extends Problem {
     private static final class ReciprocalCache {
-        final WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
-        private Function<Integer, BigInteger> divisorFun;
+        private final WeakHashMap<Integer, BigInteger> seen = new WeakHashMap<>();
+        private final Function<Integer, BigInteger> divisorFun;
 
         ReciprocalCache(int divisor) {
             BigInteger bigDivisor = BigInteger.valueOf(divisor);
@@ -34,9 +34,12 @@ public class Problem26 extends Problem {
         for (int lengthCtr = 1; lengthCtr < searchLength; ++lengthCtr) {
             BigInteger small = seen.get(lengthCtr + skip);
             BigInteger large = seen.get(lengthCtr * 2 + skip);
+            if (!small.equals(large)) {
+                continue;
+            }
             BigInteger gigantic = seen.get(lengthCtr * 3 + skip);
 
-            if (small.equals(large) && small.equals(gigantic)) {
+            if (small.equals(gigantic)) {
                 return lengthCtr;
             }
         }
@@ -62,7 +65,7 @@ public class Problem26 extends Problem {
                 cycleLength = length;
             }
         }
-        printSolution("1/%d has a reciprocal of %d digits", largestCycle, cycleLength);
+        printSolution("1/%d has a reciprocal of %d digits\n", largestCycle, cycleLength);
 
     }
 }
