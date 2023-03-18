@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Easy way to loop over all perumutations of an initial value.
+ * Easy way to loop over all permutations of an array.
  * 
  * For example:
  * for(Integer[] ex: new Permutations<Integer>(values)) {
@@ -12,6 +12,8 @@ import java.util.Iterator;
  * }
  */
 public class Permutations<T> implements Iterable<T[]> {
+    /** The base case, the permutations of an array with only a single element. 
+     */
     private static class EndNode<T> implements Iterator<T[]> {
         boolean wasCalled = false;
         private final T[] val;
@@ -32,6 +34,8 @@ public class Permutations<T> implements Iterable<T[]> {
         }
     }
 
+    /** The other cases, delegates most of the work recursively.  
+     */
     private static class Recursive<T> implements Iterator<T[]> {
         private T[] current;
         private int idx;
@@ -66,6 +70,9 @@ public class Permutations<T> implements Iterable<T[]> {
         }
     }
 
+    /** using a factory method to make it easier to provide different implementations based on size.
+     * 
+     */
     private static <T> Iterator<T[]> makeIterator(T[] start) {
         if (start.length == 1) {
             return new EndNode<T>(start);
