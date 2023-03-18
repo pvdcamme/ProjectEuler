@@ -3,11 +3,9 @@ package solutions;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * 
@@ -60,16 +58,14 @@ public class Problem51 extends Problem {
         return stillGood;
     }
 
-    long boundedSearch(int digits) {
-        long lowerBound = BigInteger.valueOf(10).pow(digits - 1).longValue();
-        long upperBound = BigInteger.valueOf(10).pow(digits).longValue();
+    long boundedSearch(int digitCount, int targetSize) {
+        final long lowerBound = BigInteger.valueOf(10).pow(digitCount - 1).longValue();
+        final long upperBound = BigInteger.valueOf(10).pow(digitCount).longValue();
+        final int replaceAllMask = ((1 << digitCount) - 1);
 
-        Set<Long> primes = new HashSet<>(PrimeUtils.gatherPrimes(lowerBound, upperBound));
-        List<List<Integer>> primeDigits = new ArrayList<>();
-        for (long p : primes) {
-            primeDigits.add(DigitUtils.toDigits(p));
-        }
-        int replaceAllMask = ((1 << digits) - 1);
+        List<List<Integer>> primeDigits = PrimeUtils.gatherPrimes(lowerBound, upperBound).stream()
+                .map(DigitUtils::toDigits).toList();
+
         for (int maskCtr = 1; maskCtr < replaceAllMask; maskCtr++) {
             Map<Long, List<Long>> sameCount = new HashMap<>();
             for (List<Integer> currentDigits : primeDigits) {
@@ -79,29 +75,28 @@ public class Problem51 extends Problem {
                 }
             }
             for (Entry<Long, List<Long>> grouped : sameCount.entrySet()) {
-                if (grouped.getValue().size() == 8) {
+                if (grouped.getValue().size() == targetSize) {
                     long minVal = Long.MAX_VALUE;
                     for (long d : grouped.getValue()) {
                         minVal = Math.min(minVal, d);
                     }
                     return minVal;
-
                 }
             }
         }
-        return -1;
+        return Integer.MIN_VALUE;
     }
 
     @Override
     public void solve() {
-        int searchSize = 4;
-        while (true) {
-            long result = boundedSearch(searchSize);
-            if (result > 0) {
+        final int targetSize = 8;
+        boolean found = false;
+        for (int searchSize = 1; !found; searchSize++) {
+            long result = boundedSearch(searchSize, targetSize);
+            found = result > 0;
+            if (found) {
                 printSolution("Found %d for %d digits", result, searchSize);
-                return;
             }
-            searchSize++;
         }
     }
 }
