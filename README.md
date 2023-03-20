@@ -1,6 +1,12 @@
 # ProjectEuler
 A repo working through the [project euler challenges](https://projecteuler.net/). 
 
+This project can be build and run as follows:
+```
+mvn install
+java -jar target/ProjectEuler<version>.jar
+```
+
 ### March 2023
 
 Picked up after a very long period of inactivity. Currently at 50 problems.
