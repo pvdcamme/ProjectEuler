@@ -12,7 +12,7 @@ public class Main {
                 new Problem31(), new Problem32(), new Problem33(), new Problem34(), new Problem35(), new Problem36(),
                 new Problem37(), new Problem38(), new Problem39(), new Problem40(), new Problem41(), new Problem42(),
                 new Problem43(), new Problem44(), new Problem45(), new Problem46(), new Problem47(), new Problem48(),
-                new Problem49(), new Problem50(), new Problem51() };
+                new Problem49(), new Problem50(), new Problem51(),  new Problem52(), new Problem53()};
         long now = System.currentTimeMillis();
 
         Problem slowest = solved[0];
@@ -25,7 +25,7 @@ public class Main {
                 slowest = prob;
                 longestSolving = duration;
             }
-        }
+        }        
         System.out.println();
         System.out.format("Solved %d problems in %f s %n", solved.length, (System.currentTimeMillis() - now) / 1e3);
         System.out.format("Slowest problem %s with %f s %n", slowest, longestSolving / 1E9);
