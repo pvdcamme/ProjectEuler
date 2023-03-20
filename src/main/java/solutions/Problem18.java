@@ -12,7 +12,7 @@ public class Problem18 extends Problem {
 
     @Override
     public void solve() {
-        try (FileReader f = new FileReader("src/resources/prob18.txt");
+        try (FileReader f = new FileReader("src/main/resources/prob18.txt");
                 BufferedReader reader = new BufferedReader(f);) {
 
             String line = null;

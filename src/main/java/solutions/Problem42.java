@@ -31,7 +31,7 @@ public class Problem42 extends Problem {
 
         int triangleWordCount = 0;
         try {
-            FileReader f = new FileReader("src/resources/p042_words.txt");
+            FileReader f = new FileReader("src/main/resources/p042_words.txt");
             StringBuilder rawWords = new StringBuilder();
             char[] buffer = new char[1024];
             int amtRead = 0;

@@ -16,7 +16,7 @@ public class Problem22 extends Problem {
     public void solve() {
         FileReader f;
         try {
-            f = new FileReader("src/resources/p022_names.txt");
+            f = new FileReader("src/main/resources/p022_names.txt");
             String rawNames = new String();
             char[] buffer = new char[1024];
             int amtRead = 0;
