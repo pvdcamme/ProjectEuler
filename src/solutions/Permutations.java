@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -12,10 +13,13 @@ import java.util.Iterator;
  * }
  */
 public class Permutations<T> implements Iterable<T[]> {
+    private static interface Resettable<T> extends Iterator<T>{
+        public void reset();
+    }
     /** The base case, the permutations of an array with only a single element. 
      */
-    private static class EndNode<T> implements Iterator<T[]> {
-        boolean wasCalled = false;
+    private final static class EndNode<T> implements  Resettable<T[]> {
+        private boolean wasCalled = false;
         private final T[] val;
 
         public EndNode(T[] val) {
@@ -24,7 +28,11 @@ public class Permutations<T> implements Iterable<T[]> {
 
         @Override
         public boolean hasNext() {
-            return false == wasCalled;
+            return !wasCalled;
+        }
+        @Override
+        public void reset() {
+            wasCalled = false;            
         }
 
         @Override
@@ -36,50 +44,53 @@ public class Permutations<T> implements Iterable<T[]> {
 
     /** The other cases, delegates most of the work recursively.  
      */
-    private static class Recursive<T> implements Iterator<T[]> {
-        private T[] current;
+    private final static class Recursive<T> implements Resettable<T[]> {
+        private final T[] current;
         private int idx;
-        private Iterator<T[]> recursive;
+        private final Resettable<T[]> recursive;
+        private final int length;
+        
 
-        public Recursive(T[] initial) {
-            current = Arrays.copyOf(initial, initial.length);
-            idx = initial.length - 1;
-            recursive = makeIterator(Arrays.copyOf(initial, initial.length - 1));
+        public Recursive(T[] initial, int length) {
+            current = initial;
+            this.length = length;
+            idx = length - 1;
+            recursive = makeIterator(initial, length - 1);
         }
 
         @Override
         public boolean hasNext() {
-            return recursive.hasNext() || idx > 0;
+            return idx > 0 || recursive.hasNext();
         }
 
         @Override
         public T[] next() {
             if (idx > 0 && !recursive.hasNext()) {
                 idx--;
-                T a = current[current.length - 1];
-                current[current.length - 1] = current[idx];
+                T a = current[length - 1];
+                current[length - 1] = current[idx];
                 current[idx] = a;
-                recursive = makeIterator(Arrays.copyOf(current, current.length - 1));
+                recursive.reset();// = makeIterator(current, length - 1);
             }
-            T[] smaller = recursive.next();
-            T[] result = Arrays.copyOf(current, current.length);
-            for (int copyCtr = 0; copyCtr < smaller.length; ++copyCtr) {
-                result[copyCtr] = smaller[copyCtr];
-            }
-            return result;
+            recursive.next();
+            return current;
+        }
+
+        @Override
+        public void reset() {
+            idx = length -1;            
         }
     }
 
     /** using a factory method to make it easier to provide different implementations based on size.
      * 
      */
-    private static <T> Iterator<T[]> makeIterator(T[] start) {
-        if (start.length == 1) {
-            return new EndNode<T>(start);
+    private static <T> Resettable<T[]> makeIterator(T[] start, int length) {
+        if (length > 1) {
+            return new Recursive<T>(start, length);            
         } else {
-            return new Recursive<T>(start);
+            return new EndNode<T>(start);
         }
-
     }
 
     private final T[] start;
@@ -90,6 +101,7 @@ public class Permutations<T> implements Iterable<T[]> {
 
     @Override
     public Iterator<T[]> iterator() {
-        return makeIterator(start);
+        T[] initial = Arrays.copyOf(start, start.length);
+        return makeIterator(initial, initial.length);
     }
 }
